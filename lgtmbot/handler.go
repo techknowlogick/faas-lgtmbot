@@ -1,11 +1,11 @@
 package function
 
 import (
-	"code.gitea.io/sdk/gitea"
 	"io/ioutil"
 	"net/http"
 	"strings"
 
+	"code.gitea.io/sdk/gitea"
 	scm "github.com/jenkins-x/go-scm/scm"
 	giteaWebhook "github.com/jenkins-x/go-scm/scm/driver/gitea"
 )
@@ -50,11 +50,13 @@ func Handle(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		// failed to get secret
 		w.WriteHeader(http.StatusInternalServerError)
+		return
 	}
 	giteaClient, err := gitea.NewClient(string(giteaHost), gitea.SetToken(string(giteaToken)))
 	if err != nil {
 		// failed to setup gitea client
 		w.WriteHeader(http.StatusInternalServerError)
+		return
 	}
 
 	// fetch PR and approvals
