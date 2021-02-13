@@ -13,3 +13,7 @@ functions:
     build_args:
       GO111MODULE: on
 
+configuration:
+  templates:
+    - name: golang-middleware
+      source: https://github.com/openfaas/golang-http-template
